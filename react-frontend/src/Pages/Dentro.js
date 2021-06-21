@@ -8,7 +8,7 @@ const Dentro = () => {
     console.log(id)
     
     useEffect(async() => {
-        const promessa = await fetch('http://localhost:3001/DB/login/', {
+        const promessa = await fetch('https://auth-trash.herokuapp.com/DB/login/', {
             method: "GET",
             headers: {
                 "Content-type":"application/json",
@@ -18,7 +18,6 @@ const Dentro = () => {
         })
         const resposta = await promessa.json()
         setRetorno(resposta)
-        console.log('resposta', resposta)
     }, [])
     
     if(retorno.provider == 'github'){
@@ -27,7 +26,7 @@ const Dentro = () => {
                 <div className="container text-center">
                     <img src={retorno.dados.avatar_url} className='rounded-circle w-25' />
                     <h1>Olá, {retorno.dados.login}! </h1>
-                    <p>Você conseguiu entrar em nosso site com ajuda do {retorno.provider} né ?!</p>
+                    <p>Você conseguiu entrar em nosso site com ajuda do {retorno.provider} né?!</p>
                     <p>Ele nos passou algumas informações sobre você:</p>
                     <p>Bio: {retorno.dados.bio}</p>
                     <p>Você tem {retorno.dados.public_repos} repositorios publicos</p>
@@ -35,6 +34,32 @@ const Dentro = () => {
                 </div>
             </>
         ) 
+    }
+    if(retorno.provider == 'facebook'){
+        var Print = (
+            <>
+                <div className="container text-center">
+                    <img src={retorno.dados.picture.data.url} className='rounded-circle w-25' />
+                    <h1>Olá, {retorno.dados.name}! </h1>
+                    <p>Você conseguiu entrar em nosso site com ajuda do {retorno.provider} né?!</p>
+                    <p>Ele praticamente não nos passou informações sobre você, além do nome e foto.</p>
+                </div>
+            </>
+        )
+    }
+    if(retorno.provider == 'google'){
+        var Print = (
+            <>
+                <div className="container text-center">
+                    <img src={retorno.dados.picture} className='rounded-circle w-25' />
+                    <h1>Olá, {retorno.dados.name}! </h1>
+                    <p>Você conseguiu entrar em nosso site com ajuda do {retorno.provider} né?!</p>
+                    <p>Ele nos passou informações basicas sobre você:</p>
+                    <p>Seu email: {retorno.dados.email}</p>
+                    <p>E a localização do seu email {retorno.dados.locale}</p>
+                </div>
+            </>
+        )
     }
     
     
