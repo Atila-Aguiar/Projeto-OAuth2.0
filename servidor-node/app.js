@@ -20,7 +20,7 @@ const Porta = process.env.PORT || 3001
 // Se a aplicação for subida pra nuvem, trocar esse valor
 const link_aplicação = `https://auth-trash.herokuapp.com/`
 // Link da paniga inicial da aplicação fontend, onde se faz o login
-const link_frontend = 'http://localhost:3000/'
+const link_frontend = 'https://auth-trash-frontend.herokuapp.com/'
 
 
 //Simulação de um Banco de dados e algumas funções
